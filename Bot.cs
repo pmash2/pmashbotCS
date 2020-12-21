@@ -11,7 +11,7 @@ namespace pmashbotCS
 {
     class Bot
     {
-        TwitchClient client;
+        public TwitchClient client;
 
         public Bot(string channel, string token)
         {
@@ -23,7 +23,7 @@ namespace pmashbotCS
             };
             WebSocketClient customClient = new WebSocketClient(clientOptions);
             client = new TwitchClient(customClient);
-            client.Initialize(credentials, "channel");
+            client.Initialize(credentials, channel);
 
             client.OnLog += Client_OnLog;
             client.OnJoinedChannel += Client_OnJoinedChannel;
@@ -53,6 +53,8 @@ namespace pmashbotCS
 
         private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
         {
+            Console.WriteLine("We got a new message!");
+
             if (e.ChatMessage.Message.Contains("badword"))
                 client.TimeoutUser(e.ChatMessage.Channel, e.ChatMessage.Username, TimeSpan.FromMinutes(30), "Bad word! 30 minute timeout!");
         }

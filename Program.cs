@@ -15,6 +15,11 @@ namespace pmashbotCS
             var token = envReader.GetStringValue("BOT_PASSWORD");
             var bot = new Bot(channel, token);
 
+            while (true)
+            {
+                System.Threading.Thread.Sleep(1000);
+            }
+
             Console.WriteLine("We made it here without error!");
         }
     }
