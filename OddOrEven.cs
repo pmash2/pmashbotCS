@@ -3,7 +3,7 @@ using System;
 
 namespace pmashbotCS
 {
-    public static class Command
+    public static class OddOrEven
     {
         public static string PlayGame(bool betEven, string userName)
         {
