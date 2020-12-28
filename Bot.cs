@@ -57,8 +57,8 @@ namespace pmashbotCS
             string[] messageParts = e.ChatMessage.Message.Split(' ');
 
             Console.WriteLine($"User message is - {e.ChatMessage.Message}");
-            if (e.ChatMessage.Message.ToUpper().Contains("HI"))
-                client.SendMessage(e.ChatMessage.Channel, $"Hello, {e.ChatMessage.DisplayName}!");
+            //if (e.ChatMessage.Message.ToUpper().Contains("HI"))
+                //client.SendMessage(e.ChatMessage.Channel, $"Hello, {e.ChatMessage.DisplayName}!");
 
             if (e.ChatMessage.Message.Contains("badword"))
                 client.TimeoutUser(e.ChatMessage.Channel, e.ChatMessage.Username, TimeSpan.FromMinutes(30), "Bad word! 30 minute timeout!");
