@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pmashbotCS.Commands;
+using System;
 using TwitchLib.Client;
 using TwitchLib.Client.Enums;
 using TwitchLib.Client.Events;
@@ -69,6 +70,10 @@ namespace pmashbotCS
 
                 client.SendMessage(e.ChatMessage.Channel, $"{OddOrEven.PlayGame(betEven, e.ChatMessage.Username)}");
 
+            }
+            else if (messageParts[0] == "!record")
+            {
+                client.SendMessage(e.ChatMessage.Channel, $"{RecordStats.GetRecord(e.ChatMessage.Username)}");
             }
         }
 
