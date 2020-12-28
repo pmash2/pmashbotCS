@@ -1,6 +1,7 @@
 ﻿using System;
 using dotenv.net;
 using dotenv.net.Utilities;
+using pmashbotCS.Models;
 
 namespace pmashbotCS
 {
@@ -14,6 +15,12 @@ namespace pmashbotCS
             var channel = envReader.GetStringValue("CHANNEL");
             var token = envReader.GetStringValue("BOT_PASSWORD");
             var bot = new Bot(channel, token);
+
+            using (var context = new mashDbContext())
+            {
+                //context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+            }
 
             while (true)
             {

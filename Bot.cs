@@ -67,7 +67,7 @@ namespace pmashbotCS
             {
                 bool betEven = messageParts[1] == "even" ? true : false;
 
-                client.SendMessage(e.ChatMessage.Channel, $"{Command.PlayGame(betEven)}");
+                client.SendMessage(e.ChatMessage.Channel, $"{Command.PlayGame(betEven, e.ChatMessage.Username)}");
 
             }
         }

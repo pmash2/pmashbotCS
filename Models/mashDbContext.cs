@@ -5,6 +5,7 @@ namespace pmashbotCS.Models
     public class mashDbContext : DbContext
     {
         public DbSet<Users> Users { get; set; }
+        public DbSet<WinLoss> WinLoss { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
