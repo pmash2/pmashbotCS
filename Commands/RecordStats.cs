@@ -4,8 +4,13 @@ using System.Linq;
 
 namespace pmashbotCS.Commands
 {
-    public static class RecordStats
+    public class RecordStats : ICommand
     {
+        public string Execute(string username, string[] args)
+        {
+            return GetRecord(username);
+        }
+
         public static string GetRecord(string userName)
         {
             var message = "";

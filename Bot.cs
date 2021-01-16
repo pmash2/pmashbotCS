@@ -73,26 +73,8 @@ namespace pmashbotCS
 
             if (commandManager.InCommandFormat(messageParts[0]))
             {
-                if (commandManager.CommandExists(messageParts[0]))
-                {
-                    client.SendMessage(e.ChatMessage.Channel, "I know how to do that!");
-                }
-                else
-                {
-                    client.SendMessage(e.ChatMessage.Channel, "Sorry, I'm not sure what that is");
-                }
-            }
-
-            if (messageParts[0] == "!bet")
-            {
-                bool betEven = messageParts[1] == "even" ? true : false;
-
-                client.SendMessage(e.ChatMessage.Channel, $"{OddOrEven.PlayGame(betEven, e.ChatMessage.Username)}");
-
-            }
-            else if (messageParts[0] == "!record")
-            {
-                client.SendMessage(e.ChatMessage.Channel, $"{RecordStats.GetRecord(e.ChatMessage.Username)}");
+                var commandOutput = commandManager.ExecuteCommand(e.ChatMessage.Username, messageParts, messageParts[0]);
+                client.SendMessage(e.ChatMessage.Channel, commandOutput);
             }
         }
 

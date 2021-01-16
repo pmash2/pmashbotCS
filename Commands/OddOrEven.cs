@@ -1,10 +1,17 @@
 ﻿using pmashbotCS.Models;
 using System;
 
-namespace pmashbotCS
+namespace pmashbotCS.Commands
 {
-    public static class OddOrEven
+    public class OddOrEven : ICommand
     {
+        public string Execute(string username, string[] args)
+        {
+            bool betEven = args[1] == "even" ? true : false;
+
+            return PlayGame(betEven, username);
+        }
+
         public static string PlayGame(bool betEven, string userName)
         {
             var rand = new Random();

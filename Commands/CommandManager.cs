@@ -1,14 +1,37 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace pmashbotCS.Commands
 {
     public class CommandManager
     {
+        ICommand OddOrEven;
+        ICommand RecordStats;
+
+        public CommandManager()
+        {
+            OddOrEven = new OddOrEven();
+            RecordStats = new RecordStats();
+        }
+
+        public string ExecuteCommand(string username, string[] args, string command)
+        {
+            switch (command)
+            {
+                case "!bet":
+                    return OddOrEven.Execute(username, args);
+                case "!record":
+                    return RecordStats.Execute(username, args);
+                default:
+                    return "Unknown command!";
+            }
+        }
+
         public bool InCommandFormat(string message)
         {
             return message.StartsWith("!");
         }
 
-        public bool CommandExists(string command)
+        private bool CommandExists(string command)
         {
             bool exists = false;
 
