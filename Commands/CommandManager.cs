@@ -4,26 +4,28 @@ namespace pmashbotCS.Commands
 {
     public class CommandManager
     {
-        ICommand OddOrEven;
-        ICommand RecordStats;
+        Dictionary<string, ICommand> Commands;
 
         public CommandManager()
         {
-            OddOrEven = new OddOrEven();
-            RecordStats = new RecordStats();
+            Commands = new Dictionary<string, ICommand>();
+            Commands.Add("!bet", new OddOrEven());
+            Commands.Add("!record", new RecordStats());
         }
 
         public string ExecuteCommand(string username, string[] args, string command)
         {
-            switch (command)
+            ICommand commandToRun;
+            try
             {
-                case "!bet":
-                    return OddOrEven.Execute(username, args);
-                case "!record":
-                    return RecordStats.Execute(username, args);
-                default:
-                    return "Unknown command!";
+                commandToRun = GetCommand(command);
             }
+            catch
+            {
+                return ("Unknown command!");
+            }
+
+            return commandToRun.Execute(username, args);
         }
 
         public bool InCommandFormat(string message)
@@ -31,24 +33,9 @@ namespace pmashbotCS.Commands
             return message.StartsWith("!");
         }
 
-        private bool CommandExists(string command)
+        private ICommand GetCommand(string command)
         {
-            bool exists = false;
-
-            switch (command)
-            {
-                case "!bet":
-                    exists = true;
-                    break;
-                case "!record":
-                    exists = true;
-                    break;
-                default:
-                    exists = false;
-                    break;
-            }
-
-            return exists;
+            return Commands[command];
         }
     }
 }
