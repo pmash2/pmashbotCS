@@ -13,9 +13,11 @@ namespace pmashbotCS
     class Bot
     {
         public TwitchClient client;
+        public CommandManager commandManager;
 
         public Bot(string channel, string token)
         {
+            commandManager = new CommandManager();
             ConnectionCredentials credentials = new ConnectionCredentials(channel, token);
             var clientOptions = new ClientOptions
             {
@@ -67,6 +69,18 @@ namespace pmashbotCS
             if (!knowOfUser)
             {
                 UserManager.AddUser(e.ChatMessage.Username);
+            }
+
+            if (commandManager.InCommandFormat(messageParts[0]))
+            {
+                if (commandManager.CommandExists(messageParts[0]))
+                {
+                    client.SendMessage(e.ChatMessage.Channel, "I know how to do that!");
+                }
+                else
+                {
+                    client.SendMessage(e.ChatMessage.Channel, "Sorry, I'm not sure what that is");
+                }
             }
 
             if (messageParts[0] == "!bet")
