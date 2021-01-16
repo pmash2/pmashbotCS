@@ -8,12 +8,7 @@ namespace pmashbotCS
     {
         public static bool UserInDatabase(string username)
         {
-            Users user;
-
-            using (var context = new mashDbContext())
-            {
-                user = context.Users.Where(x => x.Name == username).FirstOrDefault();
-            }
+            Users user = GetUser(username);
 
             return !(user is null);
         }
@@ -31,6 +26,17 @@ namespace pmashbotCS
                 context.Users.Add(user);
                 context.SaveChanges();
             }
+        }
+
+        public static Users GetUser(string username)
+        {
+            Users user;
+            using (var context = new mashDbContext())
+            {
+                user = context.Users.Where(x => x.Name == username).FirstOrDefault();
+            }
+
+            return user;
         }
     }
 }
