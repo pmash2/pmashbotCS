@@ -64,6 +64,10 @@ namespace pmashbotCS
                 client.TimeoutUser(e.ChatMessage.Channel, e.ChatMessage.Username, TimeSpan.FromMinutes(30), "Bad word! 30 minute timeout!");
 
             bool knowOfUser = UserManager.UserInDatabase(e.ChatMessage.Username);
+            if (!knowOfUser)
+            {
+                UserManager.AddUser(e.ChatMessage.Username);
+            }
 
             if (messageParts[0] == "!bet")
             {

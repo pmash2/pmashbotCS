@@ -1,4 +1,5 @@
 ﻿using pmashbotCS.Models;
+using System;
 using System.Linq;
 
 namespace pmashbotCS
@@ -15,6 +16,21 @@ namespace pmashbotCS
             }
 
             return !(user is null);
+        }
+
+        public static void AddUser(string username)
+        {
+            var user = new Users
+            {
+                Name = username,
+                EntryDate = DateTime.Now
+            };
+
+            using (var context = new mashDbContext())
+            {
+                context.Users.Add(user);
+                context.SaveChanges();
+            }
         }
     }
 }
