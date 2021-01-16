@@ -11,6 +11,7 @@ namespace pmashbotCS.Commands
             Commands = new Dictionary<string, ICommand>();
             Commands.Add("!bet", new OddOrEven());
             Commands.Add("!record", new RecordStats());
+            Commands.Add("!today", new Today());
         }
 
         public string ExecuteCommand(string username, string[] args, string command)
