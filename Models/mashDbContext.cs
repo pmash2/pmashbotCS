@@ -6,6 +6,7 @@ namespace pmashbotCS.Models
     {
         public DbSet<Users> Users { get; set; }
         public DbSet<WinLoss> WinLoss { get; set; }
+        public DbSet<TodaysMessage> TodaysMessage { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

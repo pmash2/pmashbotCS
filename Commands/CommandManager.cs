@@ -12,6 +12,7 @@ namespace pmashbotCS.Commands
             Commands.Add("!bet", new OddOrEven());
             Commands.Add("!record", new RecordStats());
             Commands.Add("!today", new Today());
+            Commands.Add("!addtoday", new AddTodaysMessage());
         }
 
         public string ExecuteCommand(string username, string[] args, string command)
