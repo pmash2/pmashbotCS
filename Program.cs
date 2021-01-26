@@ -11,7 +11,7 @@ namespace pmashbotCS
         {
             Console.WriteLine("Hello World!");
             var envReader = new EnvReader();
-            DotEnv.Config(true, "C:\\Users\\pasht\\mySecrets");
+            DotEnv.Config(true, "mySecrets");
             var channel = envReader.GetStringValue("CHANNEL");
             var token = envReader.GetStringValue("BOT_PASSWORD");
             var bot = new Bot(channel, token);
