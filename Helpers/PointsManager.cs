@@ -12,24 +12,24 @@ namespace pmashbotCS.Helpers
             return GetPointsRecord(user).Points;
         }
 
-        public ViewerPoints GetPointsRecord(string user)
+        public UserPoints GetPointsRecord(string user)
         {
-            ViewerPoints pointsRecord;
+            UserPoints pointsRecord;
             using (var context = new mashDbContext())
             {
-                pointsRecord = context.ViewerPoints
+                pointsRecord = context.UserPoints
                                 .Where(x => x.Viewer == user)
                                 .FirstOrDefault();
 
                 if (pointsRecord == null)
                 {
-                    ViewerPoints newRecord = new()
+                    UserPoints newRecord = new()
                     {
                         Viewer = user,
                         Points = 0
                     };
 
-                    context.ViewerPoints.Add(newRecord);
+                    context.UserPoints.Add(newRecord);
                     pointsRecord = newRecord;
                     context.SaveChanges();
                 }
@@ -54,7 +54,7 @@ namespace pmashbotCS.Helpers
                     Notes = notes
                 };
 
-                context.ViewerPoints.Update(pointsRecord);
+                context.UserPoints.Update(pointsRecord);
                 context.TransactionLog.Add(log);
                 context.SaveChanges();
             }
