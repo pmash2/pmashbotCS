@@ -1,9 +1,4 @@
 ﻿using pmashbotCS.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace pmashbotCS.Commands
 {
@@ -12,6 +7,11 @@ namespace pmashbotCS.Commands
         public string Execute(string username, string[] args)
         {
             // !gift bob 5 <-- I give bob 5 points
+            if (args.Length < 3)
+            {
+                return $"@{username}, to gift 10 points say !gift username 10";
+            }
+
             string receiver = args[1];
             int pointsToGift = int.Parse(args[2]);
             string notes = "";
