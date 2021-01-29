@@ -14,6 +14,7 @@ namespace pmashbotCS.Commands
             Commands.Add("!today", new Today());
             Commands.Add("!addtoday", new AddTodaysMessage());
             Commands.Add("!points", new Points());
+            Commands.Add("!gift", new Gift());
         }
 
         public string ExecuteCommand(string username, string[] args, string command)
