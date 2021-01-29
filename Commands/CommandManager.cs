@@ -13,6 +13,7 @@ namespace pmashbotCS.Commands
             Commands.Add("!record", new RecordStats());
             Commands.Add("!today", new Today());
             Commands.Add("!addtoday", new AddTodaysMessage());
+            Commands.Add("!points", new Points());
         }
 
         public string ExecuteCommand(string username, string[] args, string command)
