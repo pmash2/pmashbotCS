@@ -9,6 +9,7 @@ namespace pmashbotCS.Models
         public DbSet<TodaysMessage> TodaysMessage { get; set; }
         public DbSet<UserPoints> UserPoints { get; set; }
         public DbSet<TransactionLog> TransactionLog { get; set; }
+        public DbSet<GlobalConfigs> GlobalConfigs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
