@@ -16,12 +16,15 @@ namespace pmashbotCS
             var token = envReader.GetStringValue("BOT_PASSWORD");
             var bot = new Bot(channel, token);
 
+#if DEBUG
             using (var context = new mashDbContext())
             {
                 // TODO: Learn this versioning....
-                //context.Database.EnsureDeleted();
+                context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
+
             }
+#endif
 
             while (true)
             {
