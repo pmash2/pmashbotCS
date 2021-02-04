@@ -19,15 +19,16 @@ namespace pmashbotCS
 #if DEBUG
             using (var context = new mashDbContext())
             {
-                // TODO: Learn this versioning....
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
-
             }
 #endif
 
+            BotSettings settings = new();
+
             while (true)
             {
+                settings.RefreshSettings();
                 System.Threading.Thread.Sleep(1000);
             }
 
