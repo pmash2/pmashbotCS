@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TwitchLib.Client.Enums;
 
 namespace pmashbotCS.Commands
 {
     public class Today : ICommand
     {
+        public UserType ProtectionLevel { get; set; }
         public string Execute(string username, string[] args)
         {
             var records = new List<TodaysMessage>();

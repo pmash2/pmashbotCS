@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using pmashbotCS.Models;
 using System.Linq;
+using TwitchLib.Client.Enums;
 
 namespace pmashbotCS.Commands
 {
     public class RecordStats : ICommand
     {
+        public UserType ProtectionLevel { get; set; }
         public string Execute(string username, string[] args)
         {
             return GetRecord(username);

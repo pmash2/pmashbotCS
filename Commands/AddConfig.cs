@@ -1,11 +1,13 @@
 ﻿using pmashbotCS.Helpers;
 using pmashbotCS.Models;
 using System;
+using TwitchLib.Client.Enums;
 
 namespace pmashbotCS.Commands
 {
     public class AddConfig : ICommand
     {
+        public UserType ProtectionLevel { get; set; }
         public string Execute(string username, string[] args)
         {
             // !addcommand PTS	multiplier 2

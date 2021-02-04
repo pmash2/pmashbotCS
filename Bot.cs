@@ -79,7 +79,7 @@ namespace pmashbotCS
 
             if (commandManager.InCommandFormat(messageParts[0]))
             {
-                var commandOutput = commandManager.ExecuteCommand(e.ChatMessage.Username, messageParts, messageParts[0]);
+                var commandOutput = commandManager.ExecuteCommand(e.ChatMessage);
                 client.SendMessage(e.ChatMessage.Channel, commandOutput);
             }
         }
