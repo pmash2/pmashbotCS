@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using pmashbotCS.Helpers;
+using System.Collections.Generic;
 
 namespace pmashbotCS.Models
 {
@@ -7,34 +7,28 @@ namespace pmashbotCS.Models
     {
         public BotSettings()
         {
-            GlobalSettings = GetConfigs();
+            ConfigsManager = new();
+            GlobalSettings = ConfigsManager.GetAllConfigs();
         }
         public List<GlobalConfigs> GlobalSettings { get; set; }
+        private GlobalConfigsManager ConfigsManager { get; set; }
 
         public void RefreshSettings()
         {
             GlobalSettings.Clear();
-            GlobalSettings = GetConfigs();
+            GlobalSettings = ConfigsManager.GetAllConfigs();
+            System.Console.WriteLine($"{PrintConfigs()}");
         }
 
-        private List<GlobalConfigs> GetConfigs()
+        private string PrintConfigs()
         {
-            List<GlobalConfigs> settings = new();
-            using (var context = new mashDbContext())
-            {
-                settings = context.GlobalConfigs.ToList();
-            }
-
             string s = "";
-
-            foreach (var setting in settings)
+            foreach (var setting in GlobalSettings)
             {
                 s += $", {setting.Key} - {setting.Value}";
             }
 
-            System.Console.WriteLine($"Settings updated - {s}");
-
-            return settings;
+            return s;
         }
     }
 }
