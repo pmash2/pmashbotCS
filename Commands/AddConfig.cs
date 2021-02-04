@@ -1,4 +1,5 @@
-﻿using pmashbotCS.Models;
+﻿using pmashbotCS.Helpers;
+using pmashbotCS.Models;
 using System;
 
 namespace pmashbotCS.Commands
@@ -17,6 +18,13 @@ namespace pmashbotCS.Commands
             string key = args[1];
             string description = args[2];
             string value = args[3];
+
+            GlobalConfigsManager cfgMgr = new();
+
+            if (cfgMgr.GetConfig(key) != null)
+            {
+                return $"@{username}, that configuration already exists : {key}";
+            }
 
             using (var context = new mashDbContext())
             {
