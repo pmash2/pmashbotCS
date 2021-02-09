@@ -18,14 +18,14 @@ namespace pmashbotCS.Helpers
             using (var context = new mashDbContext())
             {
                 pointsRecord = context.UserPoints
-                                .Where(x => x.Viewer == user)
+                                .Where(x => x.Viewer == user.ToLower())
                                 .FirstOrDefault();
 
                 if (pointsRecord == null)
                 {
                     UserPoints newRecord = new()
                     {
-                        Viewer = user,
+                        Viewer = user.ToLower(),
                         Points = 0
                     };
 
@@ -48,7 +48,7 @@ namespace pmashbotCS.Helpers
                 TransactionLog log = new()
                 {
                     Points = points,
-                    Receiver = user,
+                    Receiver = user.ToLower(),
                     Giver = giver,
                     Date = DateTime.Now,
                     Notes = notes
