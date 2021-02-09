@@ -18,6 +18,7 @@ namespace pmashbotCS.Commands
             Commands.Add("!points", new Points(){ ProtectionLevel = UserType.Viewer });
             Commands.Add("!gift", new Gift(){ ProtectionLevel = UserType.Viewer });
             Commands.Add("!addconfig", new AddConfig(){ ProtectionLevel = UserType.Moderator });
+            Commands.Add("!thanks", new Thanks() { ProtectionLevel = UserType.Moderator });
         }
 
         public string ExecuteCommand(ChatMessage msgObj)
