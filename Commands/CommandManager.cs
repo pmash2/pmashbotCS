@@ -16,7 +16,7 @@ namespace pmashbotCS.Commands
             Commands.Add("!today", new Today(){ ProtectionLevel = UserType.Viewer });
             Commands.Add("!addtoday", new AddTodaysMessage(){ ProtectionLevel = UserType.Moderator });
             Commands.Add("!points", new Points(){ ProtectionLevel = UserType.Viewer });
-            Commands.Add("!gift", new Gift(){ ProtectionLevel = UserType.Staff });
+            Commands.Add("!gift", new Gift(){ ProtectionLevel = UserType.Viewer });
             Commands.Add("!addconfig", new AddConfig(){ ProtectionLevel = UserType.Moderator });
         }
 
