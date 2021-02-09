@@ -15,7 +15,11 @@ namespace pmashbotCS.Commands
             }
 
             string receiver = args[1];
-            int pointsToGift = int.Parse(args[2]);
+            int pointsToGift = 0;
+            if (!int.TryParse(args[2], out pointsToGift))
+            {
+                return $"@{username}, you need to specify a number of points to use with your !gift";
+            }
             string notes = "";
 
             for (var i = 3; i < args.Length; i++)
