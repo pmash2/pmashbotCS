@@ -9,7 +9,7 @@ namespace pmashbotCS.Commands
     public class Today : ICommand
     {
         public UserType ProtectionLevel { get; set; }
-        public string Execute(string username, string[] args)
+        public string Execute(string username, string[] args, BotSettings settings)
         {
             var records = new List<TodaysMessage>();
             string message;

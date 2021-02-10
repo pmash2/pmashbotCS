@@ -14,7 +14,6 @@ namespace pmashbotCS
             DotEnv.Config(true, "mySecrets");
             var channel = envReader.GetStringValue("CHANNEL");
             var token = envReader.GetStringValue("BOT_PASSWORD");
-            var bot = new Bot(channel, token);
 
 #if DEBUG
             using (var context = new mashDbContext())
@@ -25,10 +24,11 @@ namespace pmashbotCS
 #endif
 
             BotSettings settings = new();
+            var bot = new Bot(channel, token, settings);
 
             while (true)
             {
-                settings.RefreshSettings();
+                bot.settings.RefreshSettings();
                 System.Threading.Thread.Sleep(1000);
             }
 

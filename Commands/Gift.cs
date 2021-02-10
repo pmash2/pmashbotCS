@@ -1,4 +1,5 @@
 ﻿using pmashbotCS.Helpers;
+using pmashbotCS.Models;
 using TwitchLib.Client.Enums;
 
 namespace pmashbotCS.Commands
@@ -6,7 +7,7 @@ namespace pmashbotCS.Commands
     public class Gift : ICommand
     {
         public UserType ProtectionLevel { get; set; }
-        public string Execute(string username, string[] args)
+        public string Execute(string username, string[] args, BotSettings settings)
         {
             // !gift bob 5 <-- I give bob 5 points
             if (args.Length < 3)

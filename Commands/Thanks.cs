@@ -1,4 +1,5 @@
 ﻿using pmashbotCS.Helpers;
+using pmashbotCS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace pmashbotCS.Commands
     {
         public UserType ProtectionLevel { get; set; }
 
-        public string Execute(string username, string[] args)
+        public string Execute(string username, string[] args, BotSettings settings)
         {
             // !thanks bob 5 for being awesome
             if (args.Length < 4)

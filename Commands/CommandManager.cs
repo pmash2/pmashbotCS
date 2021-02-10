@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TwitchLib.Client.Models;
 using TwitchLib.Client.Enums;
+using pmashbotCS.Models;
 
 namespace pmashbotCS.Commands
 {
@@ -21,7 +22,7 @@ namespace pmashbotCS.Commands
             Commands.Add("!thanks", new Thanks() { ProtectionLevel = UserType.Moderator });
         }
 
-        public string ExecuteCommand(ChatMessage msgObj)
+        public string ExecuteCommand(ChatMessage msgObj, BotSettings settings)
         {
             string[] args = msgObj.Message.Split(' ');
 
@@ -40,7 +41,7 @@ namespace pmashbotCS.Commands
                 return $"@{msgObj.Username}, you are unable to use that command";
             }
 
-            return commandToRun.Execute(msgObj.Username, args);
+            return commandToRun.Execute(msgObj.Username, args, settings);
         }
 
         public bool InCommandFormat(string message)

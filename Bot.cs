@@ -1,5 +1,6 @@
 ﻿using pmashbotCS.Commands;
 using pmashbotCS.Helpers;
+using pmashbotCS.Models;
 using System;
 using TwitchLib.Client;
 using TwitchLib.Client.Enums;
@@ -16,11 +17,13 @@ namespace pmashbotCS
         public TwitchClient client;
         public CommandManager commandManager;
         public PointsManager pointsManager;
+        public BotSettings settings;
 
-        public Bot(string channel, string token)
+        public Bot(string channel, string token, BotSettings botSettings)
         {
             commandManager = new ();
             pointsManager = new ();
+            settings = botSettings;
 
             ConnectionCredentials credentials = new ConnectionCredentials(channel, token);
             var clientOptions = new ClientOptions
@@ -79,7 +82,7 @@ namespace pmashbotCS
 
             if (commandManager.InCommandFormat(messageParts[0]))
             {
-                var commandOutput = commandManager.ExecuteCommand(e.ChatMessage);
+                var commandOutput = commandManager.ExecuteCommand(e.ChatMessage, settings);
                 client.SendMessage(e.ChatMessage.Channel, commandOutput);
             }
         }
