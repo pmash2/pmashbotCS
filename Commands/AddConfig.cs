@@ -10,7 +10,7 @@ namespace pmashbotCS.Commands
         public UserType ProtectionLevel { get; set; }
         public string Execute(string username, string[] args, BotSettings settings)
         {
-            // !addcommand PTS	multiplier 2
+            // !addconfig PTS multiplier 2
 
             if (args.Length < 4)
             {
