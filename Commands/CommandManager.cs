@@ -2,6 +2,8 @@
 using TwitchLib.Client.Models;
 using TwitchLib.Client.Enums;
 using pmashbotCS.Models;
+using pmashbotCS.Helpers;
+using pmashbotCS.Repositories;
 
 namespace pmashbotCS.Commands
 {
@@ -35,12 +37,12 @@ namespace pmashbotCS.Commands
             }
             catch
             {
-                return ("Unknown command!");
+                return (MagicStrings.UnknownCommand);
             }
 
             if (!CanUseCommand(commandToRun, msgObj))
             {
-                return $"@{msgObj.Username}, you are unable to use that command";
+                return $"@{msgObj.Username}, {MagicStrings.NoPermissions}";
             }
 
             return commandToRun.Execute(msgObj.Username, args, settings);
@@ -48,7 +50,7 @@ namespace pmashbotCS.Commands
 
         public bool InCommandFormat(string message)
         {
-            return message.StartsWith("!");
+            return message.StartsWith(MagicStrings.CommandStart);
         }
 
         private ICommand GetCommand(string command)
