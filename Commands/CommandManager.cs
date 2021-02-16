@@ -55,7 +55,26 @@ namespace pmashbotCS.Commands
 
         private ICommand GetCommand(string command)
         {
-            return Commands[command];
+            ICommand cmd;
+            if (Commands.TryGetValue(command, out cmd))
+            {
+                return cmd;
+            }
+            else
+            {
+                if (StaticCommandsRepository.CommandExists(command))
+                {
+                    return new StaticCommand()
+                    {
+                        ProtectionLevel = UserType.Viewer,
+                        ReturnString = StaticCommandsRepository.GetCommand(command).Text
+                    };
+                }
+                else
+                {
+                    throw new System.Exception();
+                }
+            }
         }
 
         private bool CanUseCommand(ICommand cmd, ChatMessage msg)

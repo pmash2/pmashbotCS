@@ -1,5 +1,6 @@
 ﻿using pmashbotCS.Models;
 using System.Linq;
+using pmashbotCS.Helpers;
 
 namespace pmashbotCS.Repositories
 {
@@ -8,6 +9,8 @@ namespace pmashbotCS.Repositories
         public static StaticCommands GetCommand(string keyword)
         {
             StaticCommands cmd = new();
+            keyword = CheckForBang(keyword);
+
             using (var context = new mashDbContext())
             {
                 cmd = context.StaticCommands
@@ -25,6 +28,8 @@ namespace pmashbotCS.Repositories
                 throw new System.ArgumentException();
             }
 
+            cmd.Keyword = CheckForBang(cmd.Keyword);
+
             using (var context = new mashDbContext())
             {
                 context.StaticCommands.Add(cmd);
@@ -39,6 +44,8 @@ namespace pmashbotCS.Repositories
             {
                 throw new System.ArgumentException();
             }
+
+            cmd.Keyword = CheckForBang(cmd.Keyword);
 
             using (var context = new mashDbContext())
             {
@@ -57,6 +64,8 @@ namespace pmashbotCS.Repositories
                 throw new System.ArgumentException();
             }
 
+            cmd.Keyword = CheckForBang(cmd.Keyword);
+
             using (var context = new mashDbContext())
             {
                 context.Remove(GetCommand(cmd.Keyword));
@@ -66,7 +75,14 @@ namespace pmashbotCS.Repositories
 
         public static bool CommandExists(string keyword)
         {
+            keyword = CheckForBang(keyword);
             return !(GetCommand(keyword) == null);
+        }
+
+        private static string CheckForBang(string cmd)
+        {
+            var newCmd = cmd.StartsWith(MagicStrings.CommandStart) ? cmd : MagicStrings.CommandStart + cmd;
+            return newCmd;
         }
     }
 }
