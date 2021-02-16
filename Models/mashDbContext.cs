@@ -10,6 +10,7 @@ namespace pmashbotCS.Models
         public DbSet<UserPoints> UserPoints { get; set; }
         public DbSet<TransactionLog> TransactionLog { get; set; }
         public DbSet<GlobalConfigs> GlobalConfigs { get; set; }
+        public DbSet<StaticCommands> StaticCommands { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -21,6 +21,7 @@ namespace pmashbotCS.Commands
             Commands.Add("!addconfig", new AddConfig(){ ProtectionLevel = UserType.Moderator });
             Commands.Add("!thanks", new Thanks() { ProtectionLevel = UserType.Moderator });
             Commands.Add("!checkin", new Checkin() { ProtectionLevel = UserType.Viewer });
+            Commands.Add("!command", new Command() { ProtectionLevel = UserType.Moderator });
         }
 
         public string ExecuteCommand(ChatMessage msgObj, BotSettings settings)
