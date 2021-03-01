@@ -1,6 +1,7 @@
 ﻿using pmashbotCS.Models;
 using System;
 using TwitchLib.Client.Enums;
+using pmashbotCS.Helpers;
 
 namespace pmashbotCS.Commands
 {
@@ -24,6 +25,8 @@ namespace pmashbotCS.Commands
                     context.SaveChanges();
                 }
 
+                PostMessage(settings.Endpoint, message.Message);
+
                 result = "Today's message has been updated";
             }
             else
@@ -32,6 +35,11 @@ namespace pmashbotCS.Commands
             }
 
             return result;
+        }
+
+        async private void PostMessage(string endpoint, string message)
+        {
+            await TodayMessagePoster.PostMessage(endpoint, message);
         }
     }
 }
