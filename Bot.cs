@@ -66,8 +66,8 @@ namespace pmashbotCS
             string[] messageParts = e.ChatMessage.Message.Split(' ');
 
             Console.WriteLine($"User message is - {e.ChatMessage.Message}");
-            //if (e.ChatMessage.Message.ToUpper().Contains("HI"))
-                //client.SendMessage(e.ChatMessage.Channel, $"Hello, {e.ChatMessage.DisplayName}!");
+
+            PostMessage(e.ChatMessage);
 
             if (e.ChatMessage.Message.Contains("badword"))
                 client.TimeoutUser(e.ChatMessage.Channel, e.ChatMessage.Username, TimeSpan.FromMinutes(30), "Bad word! 30 minute timeout!");
@@ -85,6 +85,11 @@ namespace pmashbotCS
                 var commandOutput = commandManager.ExecuteCommand(e.ChatMessage, settings);
                 client.SendMessage(e.ChatMessage.Channel, commandOutput);
             }
+        }
+
+        async private void PostMessage(ChatMessage msg)
+        {
+            await MessagePoster.PostMessage(settings.Endpoint, msg);
         }
 
         private void Client_OnWhisperReceived(object sender, OnWhisperReceivedArgs e)
