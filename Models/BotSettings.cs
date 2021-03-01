@@ -20,7 +20,7 @@ namespace pmashbotCS.Models
         {
             GlobalSettings.Clear();
             GlobalSettings = ConfigsManager.GetAllConfigs();
-            System.Console.WriteLine($"{PrintConfigs()}");
+            //System.Console.WriteLine($"{PrintConfigs()}");
         }
 
         private string PrintConfigs()

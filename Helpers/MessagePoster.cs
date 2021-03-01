@@ -1,12 +1,8 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using TwitchLib.Client.Models;
-using pmashbotCS.Helpers;
 
 namespace pmashbotCS.Helpers
 {
@@ -22,13 +18,9 @@ namespace pmashbotCS.Helpers
             var json = JsonConvert.SerializeObject(postMsg);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var url = "https://localhost:44399/chatmessage";
             using var client = new HttpClient();
 
-            var response = await client.PostAsync(endpoint + MagicStrings.MessageHub, data);
-
-            string result = response.Content.ReadAsStringAsync().Result;
-            Console.WriteLine(result);
+            await client.PostAsync(endpoint + MagicStrings.MessageHub, data);
         }
     }
 
