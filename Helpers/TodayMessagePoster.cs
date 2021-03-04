@@ -22,7 +22,14 @@ namespace pmashbotCS.Helpers
 
             using var client = new HttpClient();
 
-            await client.PostAsync(endpoint + MagicStrings.TodayHub, data);
+            try
+            {
+                await client.PostAsync(endpoint + MagicStrings.TodayHub, data);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine($"Error posting message: {ex.Message}");
+            }
         }
     }
 

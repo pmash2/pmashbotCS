@@ -67,7 +67,14 @@ namespace pmashbotCS
 
             Console.WriteLine($"User message is - {e.ChatMessage.Message}");
 
-            PostMessage(e.ChatMessage);
+            try
+            {
+                PostMessage(e.ChatMessage);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error posting message! {ex.Message}");
+            }
 
             if (e.ChatMessage.Message.Contains("badword"))
                 client.TimeoutUser(e.ChatMessage.Channel, e.ChatMessage.Username, TimeSpan.FromMinutes(30), "Bad word! 30 minute timeout!");

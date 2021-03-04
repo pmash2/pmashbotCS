@@ -25,7 +25,14 @@ namespace pmashbotCS.Commands
                     context.SaveChanges();
                 }
 
-                PostMessage(settings.Endpoint, message.Message);
+                try
+                {
+                    PostMessage(settings.Endpoint, message.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error posting today's message: {ex.Message}");
+                }
 
                 result = "Today's message has been updated";
             }

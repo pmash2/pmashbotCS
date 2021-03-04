@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,14 @@ namespace pmashbotCS.Helpers
 
             using var client = new HttpClient();
 
-            await client.PostAsync(endpoint + MagicStrings.MessageHub, data);
+            try
+            {
+                await client.PostAsync(endpoint + MagicStrings.MessageHub, data);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine($"Error posting message: {ex.Message}");
+            }
         }
     }
 
